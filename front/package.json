@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@angular/animations": "^19.2.10",
+    "@angular/cdk": "^19.2.16",
+    "@angular/material": "^19.2.16",
+    "crypto-js": "^4.2.0",
+    "material-icons": "^1.13.14"
+  }
+}
