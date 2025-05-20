@@ -1,0 +1,23 @@
+<div class="client-list-container">
+  <div class="client-list-header">
+    <span>reservas encontradas: {{ bookingCards.length }} </span>
+  </div>
+
+  <div class="client-grid">
+    <app-card *ngFor="let bookingItem of displayedBookingCards"
+              [booking]="bookingItem">
+    </app-card>
+  </div>
+
+  <div class="create-client-btn" *ngIf="mode === 'default'" (click)="openModalForCreate()">
+    <button>Criar Reserva</button>
+  </div>
+
+  <app-modal-booking *ngIf="showModal"
+                     [mode]="modalMode"
+                     [bookingData]="selectedBooking"
+                     (closeModal)="handleCloseModal()"
+                     (saveBooking)="handleBookingSaved($event)">
+  </app-modal-booking>
+</div>
+

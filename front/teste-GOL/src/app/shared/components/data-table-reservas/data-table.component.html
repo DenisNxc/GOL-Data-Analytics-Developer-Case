@@ -1,0 +1,75 @@
+<!-- data-table.component.html -->
+<div class="table-container">
+  <div class="table-header">
+    <span>Reservas encontradas: {{ bookings.length }}</span>
+  </div>
+
+  <mat-form-field appearance="outline" class="search-field">
+    <mat-label>Buscar</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Digite para buscar..." />
+  </mat-form-field>
+
+  <div class="table-wrapper">
+    <table mat-table [dataSource]="displayedBookings" matSort class="custom-table mat-elevation-z0">
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="custom-header-cell">Nome</th>
+        <td mat-cell *matCellDef="let booking" class="custom-cell">
+          {{ booking.first_name }} {{ booking.last_name }}
+        </td>
+      </ng-container>
+
+      <!-- Document Column -->
+      <ng-container matColumnDef="document">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="custom-header-cell">Documento</th>
+        <td mat-cell *matCellDef="let booking" class="custom-cell">{{ booking.document }}</td>
+      </ng-container>
+
+      <!-- Birthday Column -->
+      <ng-container matColumnDef="birthday">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="custom-header-cell">Data de Aniversário</th>
+        <td mat-cell *matCellDef="let booking" class="custom-cell">{{ booking.birthday }}</td>
+      </ng-container>
+
+      <!-- Departure Date Column -->
+      <ng-container matColumnDef="departure_date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="custom-header-cell">Data de Partida</th>
+        <td mat-cell *matCellDef="let booking" class="custom-cell">{{ booking.departure_date }}</td>
+      </ng-container>
+
+      <!-- Departure IATA Column -->
+      <ng-container matColumnDef="departure_iata">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="custom-header-cell">IATA de Partida</th>
+        <td mat-cell *matCellDef="let booking" class="custom-cell">{{ booking.departure_iata }}</td>
+      </ng-container>
+
+      <!-- Arrival Date Column -->
+      <ng-container matColumnDef="arrival_date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="custom-header-cell">Data de Chegada</th>
+        <td mat-cell *matCellDef="let booking" class="custom-cell">{{ booking.arrival_date }}</td>
+      </ng-container>
+
+      <!-- Arrival IATA Column -->
+      <ng-container matColumnDef="arrival_iata">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="custom-header-cell">IATA de Chegada</th>
+        <td mat-cell *matCellDef="let booking" class="custom-cell">{{ booking.arrival_iata }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="custom-header-row"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="custom-row"></tr>
+    </table>
+
+    <mat-paginator [length]="bookings.length" [pageSize]="itemsPerPage" [pageSizeOptions]="[5, 10, 20, 50]"
+      (page)="onPageChange($event)">
+    </mat-paginator>
+  </div>
+
+  <div class="create-client-btn" *ngIf="mode === 'default'" (click)="openModalForCreate()">
+    <button>Criar Reserva</button>
+  </div>
+
+  <app-modal-booking *ngIf="showModal" [mode]="modalMode" (closeModal)="handleCloseModal()"
+    (saveBooking)="handleBookingSaved($event)">
+  </app-modal-booking>
+</div>

@@ -1,0 +1,45 @@
+.pagination-container {
+  width: 224px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 auto;
+  border-radius: 4px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  box-sizing: border-box;
+  margin-top: 12px;
+}
+
+.page-item {
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: rgba(236, 103, 36, 0.1);
+  }
+
+  &.active {
+    background-color: #EC6724;
+    color: white;
+    font-weight: 700;
+  }
+}
+
+.dots {
+  pointer-events: none;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+
+  &:hover {
+    background-color: transparent;
+  }
+}

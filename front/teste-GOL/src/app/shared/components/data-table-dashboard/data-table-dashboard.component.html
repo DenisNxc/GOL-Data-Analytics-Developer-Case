@@ -1,0 +1,56 @@
+<div class="table-container">
+  <div class="table-header">
+    <span>Voos encontrados: {{ originalData.length }}</span>
+  </div>
+
+  <mat-form-field appearance="outline" class="search-field">
+    <mat-label>Buscar</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Digite para buscar..."
+      [disabled]="isLoading">
+  </mat-form-field>
+
+  <div class="table-wrapper">
+    <table
+      mat-table
+      [dataSource]="displayedData"
+      matSort
+      class="custom-table mat-elevation-z0"
+      *ngIf="!isLoading">
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="custom-header-cell">Data</th>
+        <td mat-cell *matCellDef="let item" class="custom-cell">{{ item.date }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="iatapair">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="custom-header-cell">Rota (IATA)</th>
+        <td mat-cell *matCellDef="let item" class="custom-cell">{{ item.iatapair }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="departures">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="custom-header-cell">Partidas</th>
+        <td mat-cell *matCellDef="let item" class="custom-cell">{{ item.departures }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="arrivals">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="custom-header-cell">Chegadas</th>
+        <td mat-cell *matCellDef="let item" class="custom-cell">{{ item.arrivals }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="custom-header-row"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="custom-row"></tr>
+    </table>
+
+    <mat-paginator
+      *ngIf="!isLoading && originalData.length > 0"
+      [length]="originalData.length"
+      [pageSize]="itemsPerPage"
+      [pageSizeOptions]="[5, 10, 20, 50]"
+      (page)="onPageChange($event)"
+      [pageIndex]="currentPage">
+    </mat-paginator>
+  </div>
+</div>

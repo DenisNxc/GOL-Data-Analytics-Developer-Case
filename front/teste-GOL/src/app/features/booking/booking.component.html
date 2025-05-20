@@ -1,0 +1,21 @@
+<app-header></app-header>
+
+<app-grid
+  *ngIf="viewMode === 'grid'"
+  [currentPage]="currentPage"
+  [itemsPerPage]="itemsPerPage"
+  (totalItemsChange)="updateTotalItems($event)"
+  (bookingsChange)="onBookingsChange($event)">
+</app-grid>
+
+<app-data-table
+  *ngIf="viewMode === 'table'">
+</app-data-table>
+
+<app-pagination
+  *ngIf="totalItems > itemsPerPage"
+  [totalItems]="totalItems"
+  [itemsPerPage]="itemsPerPage"
+  [currentPage]="currentPage"
+  (pageChange)="onPageChange($event)">
+</app-pagination>

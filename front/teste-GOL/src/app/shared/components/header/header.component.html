@@ -1,0 +1,52 @@
+<div class="layout-container">
+  <div class="header">
+    <div class="logo">
+      <img src="assets/images/LogoGOL.png" alt="Logo da GOL" />
+    </div>
+    <div class="menu-icon">
+      <svg (click)="toggleSideNav()" width="24" height="20" viewBox="0 0 24 20" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <rect y="0" width="24" height="4" rx="2" fill="#555" />
+        <rect y="8" width="24" height="4" rx="2" fill="#555" />
+        <rect y="16" width="24" height="4" rx="2" fill="#555" />
+      </svg>
+    </div>
+
+    <div class="view-toggle" *ngIf="currentRoute === '/reservas'">
+      <button id="btn-grid" mat-raised-button [color]="viewMode === 'grid' ? 'primary' : 'basic'" (click)="changeViewMode('grid')"
+        matTooltip="Visualizar em cards">
+        <mat-icon>grid_view</mat-icon>
+        Cards
+      </button>
+      <button mat-raised-button [color]="viewMode === 'table' ? 'primary' : 'basic'" (click)="changeViewMode('table')"
+        matTooltip="Visualizar em tabela">
+        <mat-icon>table_rows</mat-icon>
+        Tabela
+      </button>
+    </div>
+
+    <div class="file-actions">
+      <button mat-raised-button color="primary" (click)="downloadFile()" matTooltip="Download bookings as Excel file">
+        <mat-icon>download</mat-icon>
+        Download
+      </button>
+
+<div class="upload-container">
+  <button mat-raised-button color="accent" (click)="showUploadModal = true" matTooltip="Upload bookings from Excel file">
+    <mat-icon>upload</mat-icon>
+    Upload
+  </button>
+</div>
+    </div>
+
+    <app-upload-modal
+  *ngIf="showUploadModal"
+  (fileSelected)="onFileUpload($event)"
+  (closeModal)="showUploadModal = false">
+</app-upload-modal>
+
+    <app-side-navigation [isOpen]="isSideNavOpen"
+                         (menuClosed)="onSideNavClosed()">
+    </app-side-navigation>
+  </div>
+</div>

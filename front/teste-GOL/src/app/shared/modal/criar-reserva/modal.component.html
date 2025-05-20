@@ -1,0 +1,154 @@
+<div class="modal-overlay" (click)="onClose()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>{{ modalTitle }}</h2>
+      <button mat-icon-button class="close-button" (click)="onClose()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #passageiroForm="ngForm" class="modal-content">
+      <div class="form-grid">
+        <!-- Primeiro Nome -->
+        <mat-form-field appearance="outline">
+          <mat-label>Primeiro nome</mat-label>
+          <input matInput
+            type="text"
+            id="firstName"
+            [(ngModel)]="formData.first_name"
+            name="firstName"
+            required
+            #firstNameInput="ngModel">
+          <mat-error *ngIf="firstNameInput.invalid && (firstNameInput.dirty || firstNameInput.touched)">
+            Primeiro nome é obrigatório
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Sobrenome -->
+        <mat-form-field appearance="outline">
+          <mat-label>Sobrenome</mat-label>
+          <input matInput
+            type="text"
+            id="lastName"
+            [(ngModel)]="formData.last_name"
+            name="lastName"
+            required
+            #lastNameInput="ngModel">
+          <mat-error *ngIf="lastNameInput.invalid && (lastNameInput.dirty || lastNameInput.touched)">
+            Sobrenome é obrigatório
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Data de Nascimento -->
+        <mat-form-field appearance="outline">
+          <mat-label>Data de nascimento</mat-label>
+          <input matInput
+            type="text"
+            id="birthday"
+            [(ngModel)]="formData.birthday"
+            name="birthday"
+            required
+            mask="00/00/0000"
+            #birthdayInput="ngModel"
+            placeholder="DD/MM/AAAA">
+          <mat-error *ngIf="birthdayInput.invalid && (birthdayInput.dirty || birthdayInput.touched)">
+            Data inválida (DD/MM/AAAA)
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Documento -->
+        <mat-form-field appearance="outline">
+          <mat-label>Documento</mat-label>
+          <input matInput
+            type="text"
+            id="document"
+            [(ngModel)]="formData.document"
+            name="document"
+            required
+            #documentInput="ngModel">
+          <mat-error *ngIf="documentInput.invalid && (documentInput.dirty || documentInput.touched)">
+            Documento é obrigatório
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Data de Partida -->
+        <mat-form-field appearance="outline">
+          <mat-label>Data de partida</mat-label>
+          <input matInput
+            type="text"
+            id="departureDate"
+            [(ngModel)]="formData.departure_date"
+            name="departureDate"
+            required
+            mask="00/00/0000"
+            #departureDateInput="ngModel"
+            placeholder="DD/MM/AAAA">
+          <mat-error *ngIf="departureDateInput.invalid && (departureDateInput.dirty || departureDateInput.touched)">
+            Data inválida (DD/MM/AAAA)
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Código IATA de Partida -->
+        <mat-form-field appearance="outline">
+          <mat-label>Código IATA de partida</mat-label>
+          <input matInput
+            type="text"
+            id="departureIata"
+            [(ngModel)]="formData.departure_iata"
+            name="departureIata"
+            required
+            #departureIataInput="ngModel"
+            maxlength="3"
+            uppercase>
+          <mat-error *ngIf="departureIataInput.invalid && (departureIataInput.dirty || departureIataInput.touched)">
+            Código IATA é obrigatório (3 letras)
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Data de Chegada -->
+        <mat-form-field appearance="outline">
+          <mat-label>Data de chegada</mat-label>
+          <input matInput
+            type="text"
+            id="arrivalDate"
+            [(ngModel)]="formData.arrival_date"
+            name="arrivalDate"
+            required
+            mask="00/00/0000"
+            #arrivalDateInput="ngModel"
+            placeholder="DD/MM/AAAA">
+          <mat-error *ngIf="arrivalDateInput.invalid && (arrivalDateInput.dirty || arrivalDateInput.touched)">
+            Data inválida (DD/MM/AAAA)
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Código IATA de Chegada -->
+        <mat-form-field appearance="outline">
+          <mat-label>Código IATA de chegada</mat-label>
+          <input matInput
+            type="text"
+            id="arrivalIata"
+            [(ngModel)]="formData.arrival_iata"
+            name="arrivalIata"
+            required
+            #arrivalIataInput="ngModel"
+            maxlength="3"
+            uppercase>
+          <mat-error *ngIf="arrivalIataInput.invalid && (arrivalIataInput.dirty || arrivalIataInput.touched)">
+            Código IATA é obrigatório (3 letras)
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="modal-actions">
+        <button mat-stroked-button type="button" (click)="onClose()">Cancelar</button>
+        <button mat-raised-button
+                type="submit"
+                color="primary"
+                [disabled]="passageiroForm.invalid">
+          {{ submitButtonText }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

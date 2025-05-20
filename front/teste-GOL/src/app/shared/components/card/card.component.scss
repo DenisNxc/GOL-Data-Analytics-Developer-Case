@@ -1,0 +1,167 @@
+.card-flight {
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  color: #333;
+  max-width: 400px;
+  margin: 0 auto;
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  mat-icon {
+    font-size: 18px;
+    vertical-align: middle;
+    margin-right: 6px;
+    color: #555;
+  }
+
+  .flight-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ddd;
+
+    .client-info {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .client-name,
+    .client-document,
+    .birth-date {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .flight-dates {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ddd;
+
+    .departure,
+    .arrival {
+      display: flex;
+      gap: 8px;
+      flex: 1;
+
+      .label {
+        font-weight: 500;
+        color: #444;
+      }
+    }
+  }
+
+  .flight-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .timestamps {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 12px;
+      color: #666;
+
+      .created,
+      .updated {
+        display: flex;
+        align-items: center;
+        flex: 1;
+      }
+    }
+
+    .actions {
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: center; // Alterado para centralizar os botões
+      gap: 24px; // Aumentei o gap para melhor espaçamento
+      padding-top: 12px;
+
+      button {
+        width: 40px; // Largura fixa para manter proporção
+        height: 40px; // Altura fixa igual à largura
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%; // Garante que o hover seja um círculo perfeito
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.04); // Efeito hover sutil
+        }
+
+        mat-icon {
+          font-size: 20px; // Tamanho um pouco maior para os ícones
+        }
+      }
+
+      button[color="warn"]:hover {
+        background-color: rgba(244, 67, 54, 0.1); // Hover específico para o botão delete
+      }
+
+      button[color="primary"]:hover {
+        background-color: rgba(63, 81, 181, 0.1); // Hover específico para o botão edit
+      }
+    }
+  }
+
+  .card-flight {
+    /* Estilos existentes... */
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.2s ease;
+
+    &.selected {
+      border-color: #EC6724;
+    }
+
+    /* Garante que os botões não herdem o cursor pointer */
+    .actions {
+      cursor: default;
+    }
+  }
+
+  // Alinhamento dos ícones com texto
+.info-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+
+  mat-icon {
+    font-size: 20px;
+    vertical-align: middle;
+  }
+}
+
+.timestamp-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  mat-icon {
+    margin-top: 2px;
+  }
+}
+
+}

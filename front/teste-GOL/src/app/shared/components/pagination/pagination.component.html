@@ -1,0 +1,19 @@
+<div class="pagination-container">
+  <div class="page-item" (click)="goToPrevious()" [class.disabled]="currentPage === 1">
+    &lt;
+  </div>
+
+  <ng-container *ngFor="let page of pages">
+    <div *ngIf="page === -1" class="page-item dots">...</div>
+    <div *ngIf="page !== -1"
+         class="page-item"
+         [class.active]="isActive(page)"
+         (click)="goToPage(page)">
+      {{ page }}
+    </div>
+  </ng-container>
+
+  <div class="page-item" (click)="goToNext()" [class.disabled]="currentPage === totalPages">
+    &gt;
+  </div>
+</div>

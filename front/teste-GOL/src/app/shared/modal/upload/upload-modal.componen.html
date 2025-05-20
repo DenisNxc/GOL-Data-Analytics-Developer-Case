@@ -1,0 +1,39 @@
+<div class="modal-overlay" (click)="closeModal.emit()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Importar Reservas</h2>
+      <mat-icon class="close-icon" (click)="closeModal.emit()">close</mat-icon>
+    </div>
+
+    <div class="modal-content">
+      <p>Por favor, selecione um arquivo Excel (.xlsx ou .xls) com os dados das reservas.</p>
+
+      <div class="file-upload-wrapper">
+        <input hidden id="uploadFileInput" type="file" (change)="onFileSelected($event)" accept=".xlsx,.xls">
+        <button mat-raised-button color="primary" (click)="triggerFileInput()">
+          <mat-icon>attach_file</mat-icon>
+          Selecionar Arquivo
+        </button>
+        <span class="file-name" *ngIf="selectedFile">{{ selectedFile.name }}</span>
+      </div>
+
+      <div class="instructions">
+        <h4>Instruções:</h4>
+        <ul>
+          <li>O arquivo deve estar no formato Excel</li>
+          <li>Certifique-se de que as colunas correspondam ao formato esperado</li>
+          <li>O tamanho máximo do arquivo é 5MB</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button mat-stroked-button (click)="closeModal.emit()">Cancelar</button>
+      <button mat-raised-button color="primary"
+              (click)="onUpload()"
+              [disabled]="!selectedFile">
+        Importar
+      </button>
+    </div>
+  </div>
+</div>

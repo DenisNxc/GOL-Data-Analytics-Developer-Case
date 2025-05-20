@@ -1,0 +1,31 @@
+<app-header></app-header>
+
+<div class="dashboard-wrapper">
+  <!-- Card dos gráficos -->
+  <div class="dashboard-card">
+    <div class="charts-row">
+      <div class="chart-card" *ngIf="chartData1">
+        <app-chart-container title="Partidas por data">
+          <app-chart [chartData]="chartData1" chartType="bar"></app-chart>
+        </app-chart-container>
+      </div>
+
+      <div class="chart-card" *ngIf="chartData2">
+        <app-chart-container title="Chegadas por data">
+          <app-chart [chartData]="chartData2" chartType="bar"></app-chart>
+        </app-chart-container>
+      </div>
+
+      <div class="chart-card" *ngIf="chartData3">
+        <app-chart-container title="Passageiros por rota">
+          <app-chart [chartData]="chartData3" chartType="bar"></app-chart>
+        </app-chart-container>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card da tabela -->
+  <div class="dashboard-card">
+    <app-dashboard-table></app-dashboard-table>
+  </div>
+</div>

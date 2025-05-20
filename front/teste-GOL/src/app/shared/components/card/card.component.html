@@ -1,0 +1,58 @@
+<div class="card-flight">
+  <div class="card-content">
+    <div class="client-name" style=" border-bottom: 1px solid #ddd; padding-bottom: 12px;">
+      <mat-icon>person</mat-icon>
+       {{ booking.first_name }} {{ booking.last_name }}
+    </div>
+    <div class="flight-header">
+      <div class="client-info">
+        <div class="client-document">
+          <mat-icon style="display: flex; align-items: center;">badge</mat-icon>
+          {{ booking.document }}
+        </div>
+      </div>
+      <div class="birth-date">
+        <mat-icon style="display: flex; align-items: center;">calendar_today</mat-icon>
+        Nascimento: {{ formattedBirthday }}
+      </div>
+    </div>
+
+    <div class="flight-dates">
+      <div class="departure">
+        <mat-icon>flight_takeoff</mat-icon>
+        <div>
+          <div class="label">Partida</div>
+          <div>{{ formattedDeparture }}</div>
+        </div>
+      </div>
+      <div class="arrival">
+        <mat-icon>flight_land</mat-icon>
+        <div>
+          <div class="label">Chegada</div>
+          <div>{{ formattedArrival }}</div>
+        </div>
+      </div>
+    </div>
+
+<div class="flight-footer">
+  <div class="timestamps">
+    <div class="created timestamp-block">
+      <mat-icon>schedule</mat-icon>
+      <div>
+        <div>Criado em:</div>
+        <div>{{ formattedCreated }}</div>
+      </div>
+    </div>
+    <div class="updated timestamp-block">
+      <mat-icon>update</mat-icon>
+      <div>
+        <div>Atualizado em:</div>
+        <div>{{ formattedUpdated }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div>
+    <app-modal-booking *ngIf="showModal" (closeModal)="closeModal()"></app-modal-booking>
+</div>
